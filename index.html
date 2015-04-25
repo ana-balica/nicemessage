@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Nice Messages</title>
+  <link href='http://fonts.googleapis.com/css?family=Arapey:400italic|Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="nicemessage.css"/>
+</head>
+<body>
+
+  <div id="nice-msg-app">
+    <header>
+      <h1>Leave a nice message</h1>
+      <div class="expanding-area">
+        <pre><span></span><br></pre>
+        <textarea name="new-msg" id="new-msg" autofocus></textarea>
+      </div>
+    </header>
+
+    <div id="nice-msgs">
+      <div id="left">
+      </div>
+      <div id="right">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/underscore.js"></script>
+  <script type="text/javascript" src="vendor/backbone.js"></script>
+  <script type="text/javascript" src="nicemessage.js"></script>
+  <script type="text/javascript" src="expanding-area.js"></script>
+
+  <!-- Templates -->
+  <script type="text/template" id="msg-template">
+    <%- message %>
+  </script>
+
+</body>
+</html>

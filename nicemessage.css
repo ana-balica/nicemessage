@@ -1,0 +1,85 @@
+#nice-msg-app h1 {
+  font-family: 'Arapey', serif;
+  text-align: center;
+  font-size: 4em;
+  color: #212121;
+}
+
+textarea,
+pre {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+}
+
+.expanding-area {
+  position: relative;
+  width: 50%;
+  margin: 4em auto;
+
+}
+
+.expanding-area > textarea,
+.expanding-area > pre {
+  background: transparent;
+  font-family: Helvetica, 'Open Sans', sans-serif;
+  font-size: 1.5em;
+  line-height: 1.7em;
+  border-bottom: 1px solid #b6b6b6;
+  color: #212121;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.expanding-area > textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 2em;
+}
+
+.expanding-area.active > textarea {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  resize: none;
+}
+
+.expanding-area > pre {
+  display: none;
+}
+
+.expanding-area.active > pre {
+  display: block;
+  visibility: hidden;
+}
+
+#left, #right {
+  width: 45%;
+  font-family: Helvetica, 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.5em;
+}
+
+#left {
+  float: left;
+  margin-left: 3%;
+}
+
+#right {
+  float: right;
+  margin-right: 3%;
+}
+
+#left > div,
+#right > div {
+  margin: 2% 0;
+  padding: 1.5em;
+  background: #ffeb3b;
+  color: #4e4e4e;
+}
