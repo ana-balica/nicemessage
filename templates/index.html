@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Nice Messages</title>
   <link href='http://fonts.googleapis.com/css?family=Arapey:400italic|Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="nicemessage.css"/>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/nicemessage.css"/>
 </head>
 <body>
 
@@ -26,14 +26,17 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="vendor/underscore.js"></script>
-  <script type="text/javascript" src="vendor/backbone.js"></script>
-  <script type="text/javascript" src="nicemessage.js"></script>
-  <script type="text/javascript" src="expanding-area.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/vendor/json2.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/vendor/underscore.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/vendor/backbone.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/nicemessage.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/expanding-area.js"></script>
+
+  <script type="text/javascript" src="http://l2.io/ip.js?var=userip"></script>
 
   <!-- Templates -->
   <script type="text/template" id="msg-template">
-    <%- message %>
+    <%- body %>
   </script>
 
 </body>
