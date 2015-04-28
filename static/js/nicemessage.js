@@ -7,38 +7,33 @@ var ENTER_KEY = 13;
 /*==========  Nice Message Model  ==========*/
 
 var NiceMessage = Backbone.Model.extend({
-  url: 'http://127.0.0.1:8000/nice-messages/',
+  url: '/api/v1/messages/',
 
   defaults: {
-    message: ''
+    body: '',
+    ip: userip
   }
 });
 
 /*==========  Collection of Nice Messages  ==========*/
 
 var NiceMessageList = Backbone.Collection.extend({
-  url: 'http://127.0.0.1:8000/nice-messages/',
+  url: '/api/v1/messages/',
+  model: NiceMessage,
 
-  model: NiceMessage
-
-  // temporary storage
-  // localStorage: new Backbone.LocalStorage("nice-messages-backbone"),
-
+  parse: function(response) {
+    return response.reverse();
+  }
 });
 
-var niceMessageList = new NiceMessageList;
+var niceMessageList = new NiceMessageList();
 
 /*==========  View of a single nice message  ==========*/
 
 var NiceMessageView = Backbone.View.extend({
-
   tagName: "div",
 
   template: _.template($('#msg-template').html()),
-
-  // events: {
-  //   "hover .nice-msg": "emphasize"
-  // },
 
   initialize: function() {
     this.listenTo(this.model, "change", this.render);
@@ -49,20 +44,16 @@ var NiceMessageView = Backbone.View.extend({
     return this;
   }
 
-  // emphasize: function() {
-
-  // }
-
 });
 
 /*==========  Whole app view  ==========*/
 
 var AppView = Backbone.View.extend({
   el: $('#nice-msg-app'),
-
   events: {
     "keypress #new-msg": "createOnEnter"
   },
+  new_msg: false,
 
   initialize: function() {
     this.textarea = this.$("#new-msg");
@@ -75,10 +66,10 @@ var AppView = Backbone.View.extend({
 
   createOnEnter: function(e) {
     if (e.keyCode != ENTER_KEY) return;
+    e.preventDefault();
     if (!this.textarea.val()) return;
 
-    e.preventDefault();
-    niceMessageList.create({message: this.textarea.val()});
+    niceMessageList.create({body: this.textarea.val()});
     this.textarea.val('');
   },
 
@@ -89,8 +80,8 @@ var AppView = Backbone.View.extend({
     } else {
       $(this.right_div).prepend(view.render().el);
     }
+    this.new_msg = false
   }
-
 });
 
 var App = new AppView;
