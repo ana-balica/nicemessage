@@ -3,6 +3,7 @@ $(function() {
 /*==========  Constants  ==========*/
 
 var ENTER_KEY = 13;
+var IP;
 
 /*==========  Nice Message Model  ==========*/
 
@@ -11,7 +12,7 @@ var NiceMessage = Backbone.Model.extend({
 
   defaults: {
     body: '',
-    ip: userip
+    ip: ''
   }
 });
 
@@ -41,7 +42,6 @@ var NiceMessageView = Backbone.View.extend({
     this.$el.html(this.model.get('body'));
     return this;
   }
-
 });
 
 /*==========  Whole app view  ==========*/
@@ -67,7 +67,7 @@ var AppView = Backbone.View.extend({
     e.preventDefault();
     if (!this.textarea.val()) return;
 
-    niceMessageList.create({body: this.textarea.val()});
+    niceMessageList.create({body: this.textarea.val(), ip: IP});
     this.textarea.val('');
   },
 
@@ -82,7 +82,12 @@ var AppView = Backbone.View.extend({
   }
 });
 
-var App = new AppView;
+
+ipUrl = "https://jsonip.appspot.com/";
+$.get(ipUrl, function(data) {
+  IP = data.ip;
+  var App = new AppView;
+});
 
 });
 
