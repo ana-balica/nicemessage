@@ -33,14 +33,12 @@ var niceMessageList = new NiceMessageList();
 var NiceMessageView = Backbone.View.extend({
   tagName: "div",
 
-  template: _.template($('#msg-template').html()),
-
   initialize: function() {
     this.listenTo(this.model, "change", this.render);
   },
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+    this.$el.html(this.model.get('body'));
     return this;
   }
 
